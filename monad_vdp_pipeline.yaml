@@ -1,0 +1,39 @@
+name: monad-vdp
+apiVersion: 3
+resource_size: s
+
+sources:
+  monad_raw_logs:
+    dataset_name: monad.raw_logs
+    version: 1.1.0
+    type: dataset
+    start_at: earliest
+    filter: >-
+      address = '0x0000000000000000000000000000000000001000' AND (topics LIKE
+      '0xcb607e6b63c89c95f6ae24ece9fe0e38a7971aa5ed956254f1df47490921727b%' OR
+      topics LIKE
+      '0xd1698d3454c5b5384b70aaae33f1704af7c7e055f0c75503ba3146dc28995920%' OR
+      topics LIKE
+      '0xe4d4df1e1827dd28252fd5c3cd7ebccd3da6e0aa31f74c828f3c8542af49d840%' OR
+      topics LIKE
+      '0x4fae4dbe0ed659e8ce6637e3c273cd8e4d3bf029b9379a9e8b3f3f27dbef809b%' OR
+      topics LIKE
+      '0x3e53c8b91747e1b72a44894db10f2a45fa632b161fdcdd3a17bd6be5482bac62%' OR
+      topics LIKE
+      '0x6f8045cd38e512b8f12f6f02947c632e5f25af03aad132890ecf50015d97c1b2%' OR
+      topics LIKE
+      '0x3a420a01486b6b28d6ae89c51f5c3bde3e0e74eecbb646a0c481ccba3aae3754%' OR
+      topics LIKE
+      '0xc95966754e882e03faffaf164883d98986dda088d09471a35f9e55363daf0c53%' OR
+      topics LIKE
+      '0x63030e4238e1146c63f38f4ac81b2b23c8be28882e68b03f0887e50d0e9bb18f%')
+
+transforms: {}
+
+sinks:
+  monad_decoded_sink:
+    from: monad_raw_logs
+    schema: public
+    secret_name: CORTEXVALIDATOR
+    table: monad_vdp_raw
+    type: postgres
