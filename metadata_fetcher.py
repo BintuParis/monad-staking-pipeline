@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 
 url = "https://www.gmonads.com/api/v1/public/validators/metadata?network=mainnet"
 
+# Extract Validator Metadata from Gmonads API
+
 response = requests.get(url, headers={'accept': 'application/json'})
 val = pl.read_json(io.BytesIO(response.content))
 result = val.select(pl.col("data").explode()).unnest("data")
@@ -20,12 +22,14 @@ for row in new.iter_rows():
 
 data = buffer.getvalue()
 
+# load environment
 load_dotenv()
 
 namespace = os.getenv("namespace")
 table_name = "monad_validator_metadata"
 api_key = os.getenv("X-DUNE-API-KEY")
 
+# Clear Table and Input Up-to-date Validator Metadata
 input_url = f"https://api.dune.com/api/v1/uploads/{namespace}/{table_name}/insert"
 clear_url = f"https://api.dune.com/api/v1/uploads/{namespace}/{table_name}/clear"
 
