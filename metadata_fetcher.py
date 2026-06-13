@@ -25,9 +25,9 @@ data = buffer.getvalue()
 # load environment
 load_dotenv()
 
-namespace = os.getenv("namespace")
-table_name = "monad_validator_metadata"
+namespace = os.getenv("NAMESPACE")
 api_key = os.getenv("DUNE_API_KEY")
+table_name = "monad_validator_metadata"
 
 # Clear Table and Input Up-to-date Validator Metadata
 input_url = f"https://api.dune.com/api/v1/uploads/{namespace}/{table_name}/insert"
