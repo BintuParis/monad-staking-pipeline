@@ -15,7 +15,7 @@ jobs:
           python-version: "3.12"
       run: |
         pip install requests polars python-dotenv
-      run: 
+      run: metadata_fetcher.py
         env:
           X-DUNE-API-KEY: ${{ secrets.api_key}}
           namespace: ${{ secrets.namespace}}
