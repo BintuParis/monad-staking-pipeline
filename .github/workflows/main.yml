@@ -17,7 +17,7 @@ jobs:
         pip install requests polars python-dotenv
       run: metadata_fetcher.py
         env:
-          X-DUNE-API-KEY: ${{ secrets.api_key}}
+          X-DUNE-API-KEY: ${{ secrets.DUNE_API_KEY}}
           namespace: ${{ secrets.namespace}}
     
    
