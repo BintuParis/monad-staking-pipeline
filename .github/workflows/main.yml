@@ -13,8 +13,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run:
-      - run:
+      run: |
+        pip install requests polars python-dotenv
+      run: 
         env:
           X-DUNE-API-KEY: ${{ secrets.api_key}}
           namespace: ${{ secrets.namespace}}
